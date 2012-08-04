@@ -1,0 +1,9 @@
+*.o
+*.so
+*~
+ruby/Makefile
+*.5
+*.8
+*.6
+_obj
+_test

@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+ENV.store("LD_PRELOAD", "/usr/lib/fluent/jemalloc/lib/libjemalloc.so")
+ENV["KZK"] = "aiueo"
+
+pid = Process.fork
+if pid.nil? then
+  Kernel.exec *ARGV
+else
+  pid, status = Process.wait2
+end

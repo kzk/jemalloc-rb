@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    je (0.5.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rake (0.9.2.2)
+    rake-compiler (0.7.9)
+      rake
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (>= 1.0.0)
+  je!
+  rake (>= 0.8.7)
+  rake-compiler (~> 0.7.1)
