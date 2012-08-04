@@ -9,4 +9,5 @@ if pid.nil? then
   Kernel.exec *ARGV
 else
   pid, status = Process.wait2
+  Kernel.exit status.exitstatus
 end
