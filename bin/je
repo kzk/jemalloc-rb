@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
-ENV.store("LD_PRELOAD", "/usr/lib/fluent/jemalloc/lib/libjemalloc.so")
-ENV["KZK"] = "aiueo"
+
+lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
+jemalloc_path = lib_dir + "/jemalloc.so"
+ENV.store("LD_PRELOAD", jemalloc_path)
 
 pid = Process.fork
 if pid.nil? then

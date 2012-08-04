@@ -1,6 +1,8 @@
 *.o
 *.so
 *~
+ext/jemalloc/*.c
+ext/jemalloc/jemalloc-3.0.0/
 ruby/Makefile
 *.5
 *.8
