@@ -9,13 +9,12 @@ Gem::Specification.new do |s|
   s.description = %q{Use jemalloc as default allocator, everywhere!}
   s.author = "Kazuki Ohta"
   s.email = "kazuki.ohta@gmail.com"
-  s.homepage = "http://msgpack.org/"
-  s.rubyforge_project = "je"
-  s.has_rdoc = true
-  s.rdoc_options = ["ext"]
+  s.homepage = "https://github.com/treasure-data/je"
+  s.extensions = ["ext/jemalloc/extconf.rb"]
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n") 
+  s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'bundler', ['>= 1.0.0']
