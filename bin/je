@@ -3,10 +3,10 @@
 # Set ENV for preloading jemalloc
 lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
 if File.exists? (lib_dir + "/jemalloc.so")
-  puts "Injecting jemalloc..."
+  puts "=> Injecting jemalloc..."
   ENV.store("LD_PRELOAD", lib_dir + "/jemalloc.so")
 else
-  puts "Skip injecting jemalloc..."
+  puts "=> Skip injecting jemalloc. Your platform is not supported."
 end
 
 # fork(2) and exec(2)
