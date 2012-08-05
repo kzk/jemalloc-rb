@@ -1,6 +1,6 @@
-# je - Handy [jemalloc](http://www.canonware.com/jemalloc/) injestion into Ruby applications
+# je - Instant [jemalloc](http://www.canonware.com/jemalloc/) injection into Ruby apps
 
-jemalloc sometimes dramatically supresses the memory fragmentation on server programs. `je` gem contains jemalloc itself within a gem, and enables you to injest jemalloc into your application in a really easy way: install `je` gem, and launch your app with `je` command.
+jemalloc sometimes dramatically supresses the memory fragmentation on server programs. `je` gem contains jemalloc itself within a gem, and enables you to inject jemalloc into your application in a really easy way: install `je` gem, and launch your app with `je` command.
 
 # Install
 
