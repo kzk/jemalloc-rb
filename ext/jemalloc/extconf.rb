@@ -1,4 +1,5 @@
 require 'mkmf'
+require 'rbconfig'
 require File.expand_path('../../lib/je/version', File.dirname(__FILE__))
 
 $stdout.sync = true
@@ -14,8 +15,11 @@ Dir.chdir File.dirname(__FILE__) do
     puts `./configure`
     # mkmf only allows *.c file on current dir
     puts `cp src/*.c ../`
-    # zone.c is only for OS X Lion
-    puts `rm -fR ../zone.c`
+    # zone.c is only for Mac OS X
+    if RbConfig::CONFIG['target_vendor'] != "apple"
+      puts `rm -fR ../zone.c`
+    end
+    exit
   end
 end
 Dir.chdir cur_dir

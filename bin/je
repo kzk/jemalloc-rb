@@ -1,9 +1,15 @@
 #!/usr/bin/env ruby
 
+# Set ENV for preloading jemalloc
 lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
-jemalloc_path = lib_dir + "/jemalloc.so"
-ENV.store("LD_PRELOAD", jemalloc_path)
+if File.exists? (lib_dir + "/jemalloc.so")
+  puts "Injecting jemalloc..."
+  ENV.store("LD_PRELOAD", jemalloc_path)
+else
+  puts "Skip injecting jemalloc..."
+end
 
+# fork(2) and exec(2)
 pid = Process.fork
 if pid.nil? then
   Kernel.exec *ARGV
