@@ -19,7 +19,6 @@ Dir.chdir File.dirname(__FILE__) do
     if RbConfig::CONFIG['target_vendor'] != "apple"
       puts `rm -fR ../zone.c`
     end
-    exit
   end
 end
 Dir.chdir cur_dir
