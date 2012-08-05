@@ -4,7 +4,7 @@
 lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
 if File.exists? (lib_dir + "/jemalloc.so")
   puts "Injecting jemalloc..."
-  ENV.store("LD_PRELOAD", jemalloc_path)
+  ENV.store("LD_PRELOAD", lib_dir + "/jemalloc.so")
 else
   puts "Skip injecting jemalloc..."
 end
