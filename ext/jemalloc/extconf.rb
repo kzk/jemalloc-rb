@@ -32,8 +32,11 @@ create_makefile('jemalloc')
 # NOTICE: Mac OS X only
 if RbConfig::CONFIG['target_vendor'] == "apple"
   makefile = open('Makefile').read
-  makefile.gsub!(/-dynamic\ -bundle/, '-shared')
-  makefile.gsub!(/-flat_namespace/, '-dylib_install_name')
-  #,-dylib_install_name
+  if makefile =~ /-dynamic\ -bundle/ && makefile =~ /-flat_namespace/
+    makefile.gsub!(/-dynamic\ -bundle/, '-shared')
+    makefile.gsub!(/-flat_namespace/, '-dylib_install_name')
+  else
+    raise 'Your platform is not supported. Please report to http://github.com/treasure-data/je'
+  end
   open('Makefile', 'w'){ |f| f.write(makefile) }
 end
