@@ -15,12 +15,13 @@ end
 
 # Option parsing
 $verbose = false
-usage() if ARGV.length == 0
-if ARGV[0] == '-v'
+argv = ARGV
+usage() if argv.length == 0
+if argv[0] == '-v'
   $verbose = true
-  ARGV = ARGV[1..-1]
+  argv = argv[1..-1]
 end
-usage() if ARGV.length == 0
+usage() if argv.length == 0
 
 # Set ENV for preloading jemalloc
 lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
@@ -54,7 +55,7 @@ trap("TERM") { puts "SIGTERM received"; terminate_gracefully pid }
 
 # exec(2)
 if pid.nil? then
-  Kernel.exec *ARGV
+  Kernel.exec *argv
 else
   pid, status = Process.wait2
   Kernel.exit (status.exitstatus || 0)
