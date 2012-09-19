@@ -24,6 +24,13 @@ Execute your application with `je` command, which is contained in `je` gem. Exam
 
     $ bundle exec je ./script/rails s
 
+`-v` option will let you confirm jemalloc is actually injected.
+
+    $ bundle exec je -v ./script/rails s
+    => Injecting jemalloc...
+    => Booting WEBrick
+    ...
+
 # Limitation
 
 Currently, this gem works only on Linux and Mac OS X.
