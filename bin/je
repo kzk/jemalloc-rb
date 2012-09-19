@@ -1,16 +1,31 @@
 #!/usr/bin/env ruby
+require 'optparse'
 require 'timeout'
+
+$verbose = false
+opt = OptionParser.new
+opt.on('-v') { |v| $verbose = true }
+argv = opt.parse(ARGV)
+if argv.length == 0
+  puts <<END
+  Usage: je [ARGS]...
+  
+  Options:
+    -v verbose
+END
+  exit
+end
 
 # Set ENV for preloading jemalloc
 lib_dir = File.expand_path('../lib/', File.dirname(__FILE__))
 if File.exists? (lib_dir + "/jemalloc.so")
-  puts "=> Injecting jemalloc..."
+  puts "=> Injecting jemalloc..." if $verbose
   ENV.store("LD_PRELOAD", lib_dir + "/jemalloc.so")
 elsif File.exists? (lib_dir + "/jemalloc.bundle")
-  puts "=> Injecting jemalloc..."
+  puts "=> Injecting jemalloc..." if $verbose
   ENV.store("DYLD_INSERT_LIBRARIES", lib_dir + "/jemalloc.bundle")
 else
-  puts "=> Skip injecting jemalloc. Your platform is not supported."
+  puts "=> Skip injecting jemalloc. Your platform is not supported." if $verbose
 end
 
 # fork(2)
@@ -33,7 +48,7 @@ trap("TERM") { puts "SIGTERM received"; terminate_gracefully pid }
 
 # exec(2)
 if pid.nil? then
-  Kernel.exec *ARGV
+  Kernel.exec *argv
 else
   pid, status = Process.wait2
   Kernel.exit (status.exitstatus || 0)
