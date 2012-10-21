@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.description = %q{Use jemalloc as default allocator, everywhere!}
   s.author = "Kazuki Ohta"
   s.email = "kazuki.ohta@gmail.com"
-  s.homepage = "https://github.com/treasure-data/je"
+  s.homepage = "https://github.com/treasure-data/jemalloc-rb"
   s.extensions = ["ext/jemalloc/extconf.rb"]
 
   s.files = `git ls-files`.split("\n")

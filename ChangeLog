@@ -1,3 +1,6 @@
+Release 0.1.5 - 2012/10/21
+- fixed homepage at gemspec
+
 Release 0.1.4 - 2012/10/21
 - change gem name from je to jemalloc
 
