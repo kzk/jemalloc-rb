@@ -1,4 +1,4 @@
-# je
+# jemalloc
 
 Instant [jemalloc](http://www.canonware.com/jemalloc/) injection into Ruby apps, for better performance and less memory.
 
@@ -8,15 +8,15 @@ Ruby relies on malloc(3) for its internal memory allocation. Using better malloc
 
 jemalloc is a malloc(3) implementation, originally developed by Jason Evans. jemalloc handles small object better than other allocators so usually gives better performance and memory usage to Ruby programs.
 
-# Why je?
+# Why jemalloc?
 
 Installing jemalloc separately from Ruby is pain in some cases (e.g. Heroku, EngineYard, etc). `je` gem contains jemalloc itself within a gem, and enables instant jemalloc ingection in a really easy way: install `je` gem, and launch your app with `je` command.
 
 # Install
 
-Install `je` gem in your application. For [bundler](http://gembundler.com/) based application, please add the following line into your Gemfile, and and install `je` by `bundle install`.
+Install `jemalloc` gem in your application. For [bundler](http://gembundler.com/) based application, please add the following line into your Gemfile, and and install `jemalloc` by `bundle install`.
 
-    gem 'je'
+    gem 'jemalloc'
 
 # Usage
 
