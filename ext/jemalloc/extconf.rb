@@ -2,7 +2,7 @@ require 'mkmf'
 require 'rbconfig'
 
 $stdout.sync = true
-pkg = "jemalloc-3.1.0"
+pkg = "jemalloc-3.2.0"
 
 # monfigure and copy sources to cur_dir
 cur_dir = Dir.pwd
