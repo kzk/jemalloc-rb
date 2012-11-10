@@ -36,7 +36,7 @@ if RbConfig::CONFIG['target_vendor'] == "apple"
     makefile.gsub!(/-dynamic\ -bundle/, '-shared')
     makefile.gsub!(/-flat_namespace/, '-dylib_install_name')
   else
-    raise 'Your platform is not supported. Please report to http://github.com/treasure-data/je'
+    raise 'Your platform is not supported. Please report to http://github.com/treasure-data/jemalloc-rb'
   end
   open('Makefile', 'w'){ |f| f.write(makefile) }
 end
