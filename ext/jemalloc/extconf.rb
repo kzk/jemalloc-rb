@@ -4,21 +4,32 @@ require 'rbconfig'
 $stdout.sync = true
 pkg = "jemalloc-3.2.0"
 
+def sys(cmd)
+  puts "$ #{cmd}"
+  unless ret = xsystem(cmd)
+    raise "system command `#{cmd}' failed, please report to https://github.com/ibc/em-udns/issues"
+  end
+  ret
+end
+
 # monfigure and copy sources to cur_dir
+src_dir = File.expand_path(File.dirname(__FILE__))
 cur_dir = Dir.pwd
 Dir.chdir File.dirname(__FILE__) do
   # cleanup
-  puts `rm -fR #{pkg}`
-  puts `tar vjxf #{pkg}.tar.bz2`
+  FileUtils.remove_dir(pkg, force = true)
+
+  # decompress and copy source files
+  sys "tar vjxf #{pkg}.tar.bz2"
   Dir.chdir(pkg) do
     # configure
-    puts `./configure`
+    sys "./configure"
     # zone.c is only for Mac OS X
     if RbConfig::CONFIG['target_vendor'] != "apple"
-      puts `rm -fR src/zone.c`
+      sys "rm -fR src/zone.c"
     end
     # mkmf only allows *.c files on current dir
-    puts `cp src/*.c #{cur_dir}`
+    sys "cp src/*.c #{src_dir}"
   end
 end
 Dir.chdir cur_dir
@@ -28,7 +39,9 @@ $CFLAGS << %[ -std=gnu99 -Wall -pipe -g3 -fvisibility=hidden -O3 -funroll-loops 
 
 create_makefile('jemalloc')
 
-# modify Makefile to create .dylib, instead of .bundle
+# Modify Makefile to create .dylib, instead of .bundle. Because extconf.rb
+# generates .bundle by default, but .bundle cannot be dynamically loaded by
+# LD_PRELOAD.
 # NOTICE: Mac OS X only
 if RbConfig::CONFIG['target_vendor'] == "apple"
   makefile = open('Makefile').read
