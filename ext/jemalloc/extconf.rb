@@ -45,9 +45,13 @@ create_makefile('jemalloc')
 # NOTICE: Mac OS X only
 if RbConfig::CONFIG['target_vendor'] == "apple"
   makefile = open('Makefile').read
+  # for 1.9.2 and 1.9.3
   if makefile =~ /-dynamic\ -bundle/ && makefile =~ /-flat_namespace/
     makefile.gsub!(/-dynamic\ -bundle/, '-shared')
     makefile.gsub!(/-flat_namespace/, '-dylib_install_name')
+  # for 2.0.0
+  elsif makefile =~ /-dynamic\ -bundle/
+    makefile.gsub!(/-dynamic\ -bundle/, '-shared')
   else
     raise 'Your platform is not supported. Please report to http://github.com/treasure-data/jemalloc-rb'
   end
