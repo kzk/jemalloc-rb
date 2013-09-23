@@ -42,7 +42,7 @@ pid = Process.fork
 def terminate_gracefully(pid)
   begin
     Process.kill("SIGTERM", pid) rescue Errno::ESRCH
-    Timeout.timeout(3) {
+    Timeout.timeout(180) {
       pid, status = Process.wait2
       Kernel.exit (status.exitstatus || 0)
     }
