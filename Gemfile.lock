@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jemalloc (0.1.8)
+    jemalloc (1.0.0)
 
 GEM
   remote: https://rubygems.org/
