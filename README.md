@@ -10,7 +10,7 @@ jemalloc is a malloc(3) implementation, originally developed by Jason Evans. jem
 
 # Why jemalloc?
 
-Installing jemalloc separately from Ruby is pain in some cases (e.g. Heroku, EngineYard, etc). `je` gem contains jemalloc itself within a gem, and enables instant jemalloc ingection in a really easy way: install `je` gem, and launch your app with `je` command.
+Installing jemalloc separately from Ruby is pain in some cases (e.g. Heroku, EngineYard, etc). `je` gem contains jemalloc itself within a gem, and enables instant jemalloc injection in a really easy way: install `je` gem, and launch your app with `je` command.
 
 # Install
 
