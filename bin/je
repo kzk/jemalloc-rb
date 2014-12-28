@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
-require 'optparse'
-require 'timeout'
-
 # Help
 def usage
   puts <<END
