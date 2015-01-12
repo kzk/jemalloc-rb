@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
-require 'optparse'
-require 'timeout'
-
 # Help
 def usage
   puts <<END
@@ -40,28 +37,4 @@ else
   puts "=> Skip injecting jemalloc. Your platform is not supported." if $verbose
 end
 
-# fork(2)
-pid = Process.fork
-
-# set signal handlerss
-def terminate_gracefully(pid)
-  begin
-    Process.kill("SIGTERM", pid) rescue Errno::ESRCH
-    Timeout.timeout(180) {
-      pid, status = Process.wait2
-      Kernel.exit (status.exitstatus || 0)
-    }
-  rescue Timeout::Error
-    Process.kill("SIGKILL", pid) rescue Errno::ESRCH
-  end
-end
-trap("INT") { puts "SIGINT received"; terminate_gracefully pid }
-trap("TERM") { puts "SIGTERM received"; terminate_gracefully pid }
-
-# exec(2)
-if pid.nil? then
-  Kernel.exec *argv
-else
-  pid, status = Process.wait2
-  Kernel.exit (status.exitstatus || 0)
-end
+Kernel.exec *argv
