@@ -2,7 +2,7 @@ require 'mkmf'
 require 'rbconfig'
 
 $stdout.sync = true
-pkg = "jemalloc-3.4.0"
+pkg = "jemalloc-4.0.4"
 
 def sys(cmd)
   puts "$ #{cmd}"
@@ -12,21 +12,31 @@ def sys(cmd)
   ret
 end
 
+# grab config options
+config_options = []
+config_options << '--disable-valgrind' unless (with_config('valgrind') == false)
+
 # monfigure and copy sources to cur_dir
 src_dir = File.expand_path(File.dirname(__FILE__))
 cur_dir = Dir.pwd
 Dir.chdir File.dirname(__FILE__) do
   # cleanup
-  FileUtils.remove_dir(pkg, force = true)
+  FileUtils.remove_dir(pkg, true)
 
   # decompress and copy source files
   sys "tar vjxf #{pkg}.tar.bz2"
   Dir.chdir(pkg) do
     # configure
-    sys "./configure"
+    sys "./configure #{ config_options.join(' ') }"
     # zone.c is only for Mac OS X
     if RbConfig::CONFIG['target_vendor'] != "apple"
       sys "rm -fR src/zone.c"
+    end
+    # if we don't remove this explicitly, mkmf will try to include it
+    # and that causes issues when '--disable-valgrind' is used
+    # le sigh
+    unless with_config('valgrind') == false
+      sys "rm -fR src/valgrind.c"
     end
     # mkmf only allows *.c files on current dir
     sys "cp src/*.c #{src_dir}"
