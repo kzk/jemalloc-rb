@@ -33,7 +33,7 @@ Execute your application with `je` command, which is contained in `je` gem. Exam
 
 # Advanced: Valgrind
 
-Jemalloc is built to use the system library [Valgrind](http://valgrind.org/) by default. As Valgrind is not installed on Mac systems by default, or on Heroku, this gem disables Valgrind by using `--disable-valgrind` during the configure process.
+Jemalloc is built to use [Valgrind](http://valgrind.org/) by default. As Valgrind is not installed on Mac systems or on Heroku, this gem disables Valgrind by using `--disable-valgrind` during the configure process.
 
 You can enable Valgrind but specifying: `bundle config build.jemalloc --with-valgrind` before installing jemalloc-rb using Bundler.
 
