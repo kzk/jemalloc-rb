@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jemalloc (1.0.1)
+    jemalloc (1.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -18,3 +18,6 @@ DEPENDENCIES
   jemalloc!
   rake (>= 0.8.7)
   rake-compiler (~> 0.7.1)
+
+BUNDLED WITH
+   1.13.5
