@@ -14,7 +14,7 @@ Installing jemalloc separately from Ruby is pain in some cases (e.g. Heroku, Eng
 
 # Install
 
-Install `jemalloc` gem in your application. For [bundler](http://gembundler.com/) based application, please add the following line into your Gemfile, and and install `jemalloc` by `bundle install`.
+Install `jemalloc` gem in your application. For [bundler](http://gembundler.com/) based application, please add the following line into your Gemfile, and install `jemalloc` by `bundle install`.
 
     gem 'jemalloc'
 
