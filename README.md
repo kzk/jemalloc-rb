@@ -2,6 +2,11 @@
 
 Instant [jemalloc](http://www.canonware.com/jemalloc/) injection into Ruby apps, for better performance and less memory.
 
+# Example
+
+[GarazLab](https://garazlab.com) uses this gem with its below rails applications for its internal memory allocation:
+1. [Ruby on Rails Page Builder](https://garazlab.com/product/ruby-on-rails-page-builder)
+
 # Why jemalloc?
 
 Ruby relies on malloc(3) for its internal memory allocation. Using a better malloc() implementation will boost your application's performance, and reduce it's memory usage.
