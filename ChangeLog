@@ -1,3 +1,6 @@
+Release x.x.x - 2022/11/15
+- jemalloc v5.3.0
+
 Release 1.0.1 - 2015/01/15
 - just exec without spawn
 
